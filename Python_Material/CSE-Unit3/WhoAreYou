@@ -1,0 +1,4 @@
+name = input ("What is your Name? ")
+school = input ("Where do you go to school? ")
+Bfood = input ("what is your favorite breakfast food? ")
+print(f"Hello {name} that goes to {school}. Did you eat any {Bfood} this morning? ")

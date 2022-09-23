@@ -1,0 +1,39 @@
+'''
+    Data Types
+        Primitive: boolean, float, integer
+        Non-Primitive: Strings, Lists, Dictionaries, OOP
+            These are technically classes
+            You can do object.method()
+            String.Method()
+
+'''
+# to convert data to a string, use STR
+from re import U
+
+
+age = str(15)
+age = "15" # the "" ae the indictator tat it is string
+age = '15' # the '' is also an indicator for strings
+
+email="Charity.Baylor@evsck12.com"
+email2= "Nicholas.deeg@evsck12.com"
+#Substring or a portion of the string
+username=email[0:email.index("@")]          # start location :stop location
+Domain=email[15:26]
+firstname=email[0:7]
+lastname=email[8:14]
+#print(username)
+#print(Domain)
+#print(lastname)
+number="123456"
+#print(number[:3])  #[StartingIndex:StoppingIndex]
+
+print(2+2)
+print("2"+"2") #concatenation or addition
+#print("2"**3)
+print(2**3)
+print("123"+"456"+str(789))
+
+
+#quick trick to clear the console
+print("/n"*50)                         #/n is new line so this code adds 50 new lines
