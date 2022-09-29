@@ -16,3 +16,27 @@ print(int("8675309"))
 print(bool(0))
 print(bool(1))
 print(float(10))
+
+# conditional statments -> if statement -> if elif else
+
+x=int(input("give me a number"))
+if(x<10):
+    print("too low")
+elif(x>10):
+    print("toohigh")
+else:
+    print("you got it!!!")
+
+# you can use a space of your a monster must utilize tabs
+
+# if (boolean):
+#   then portion
+# nested -> a bird is stitting in the nest -> indented inside of the nest 
+
+food = input("did you eat breakfast")
+if (food=="yes"):
+    what = input("what did you eat for bfast")
+    if (what=="waffles"):
+        t= input("what type of waffles")
+        if (t=="chocolate chip"):
+            print("bluebery is superior")

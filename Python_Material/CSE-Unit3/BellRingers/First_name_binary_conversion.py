@@ -1,0 +1,6 @@
+print(bin(ord("H")))
+print(bin(ord("o")))
+print(bin(ord("w")))
+print(bin(ord("a")))
+print(bin(ord("r")))
+print(bin(ord("d")))
