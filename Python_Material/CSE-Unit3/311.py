@@ -31,4 +31,4 @@ print("this is a number:" + str(5))
 print(f"This is a number {5}")
 
 age = input(f"How old are {name}")
-print(f"{howard} are {age} years old!!")
+print(f"{name} are {age} years old!!")
