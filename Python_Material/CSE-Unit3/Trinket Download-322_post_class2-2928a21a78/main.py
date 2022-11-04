@@ -1,15 +1,16 @@
 from Post import Post
+#from file import class
 
 all_posts_archive = []
 
 # your code here
-post1=Post("Marie","this is my first post")
-#object = constructor(arguments)
-#post1 = __init__(self,username,message)
+post1 = Post("Marie","This is my first post")
+#object = Constructor(arguments)
+#post1 = __init__(self,username,message)  technically in the line 2 rows above
 print(post1)
-#print (post1.__str__()) technically whats going on in line 9
+#print(post1.__str__()) technically what's in the line above
 
-#letters and setters
+#getters and setters
 post1.set_message("I changed my message")
 print(post1)
 

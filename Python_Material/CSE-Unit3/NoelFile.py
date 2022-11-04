@@ -44,3 +44,5 @@ order=[]
 number=(0)
 number=(number+20)
 print(number)
+
+print("\033[5;30;47m you hit a landmine. congrats you are know more than two places at once \n")
