@@ -54,8 +54,8 @@ while timeCapsule not in inventory:
                 elif pickup ==("4"):
                     print("its a cave, it's dark, you're scared of the dark, you return to the entrance of the cave out of fear, screaming like a girl on your way there\n ")
     elif whereToGo == ("1"):
-        print("you follow the path and sure enough it leads to a swamp.\n \n You explore further. \n You find in the swamp a hut made out of what looks to be a tree stump a massive ")
-        whereToGo=input("you can (1) knock on the door ")
+        print("you follow the path and sure enough it leads to a swamp.\n \n You explore further. \n You find in the swamp a hut made out of what looks to be a tree stump a massive mud pool and an outhouse ")
+        whereToGo=input("you can \n(1) knock on the door \n(2)get outta there \n(3) put your finger and your thumb in the shape of an L on your forehead \n(4) go to the outhouse")
     
     
     
@@ -69,7 +69,7 @@ while timeCapsule not in inventory:
     
     
     
-    
+    #temperary iterator
     else: 
         inventory.append(timeCapsule)
                     
