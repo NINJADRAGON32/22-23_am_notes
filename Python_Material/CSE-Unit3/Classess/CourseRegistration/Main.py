@@ -9,42 +9,56 @@ masterStudentList = []
 masterCourseList = []
 #read from DB
 
-
-def loadStudent(firstName,lastName):
+def loadStudent():
     file1 = open("StudentDatabase.txt","r")
     f = file1.readlines()
     for line in f:
         #print the line and strip everything to the right
         first,last = line.rstrip().split(",")
         #create new student object
-        newStudent = Student(firstName, lastName)
+        newStudent = Student(first,last)
         #add student to masterStudentList
         masterStudentList.append(newStudent)
         
-    
-    #randomly add courses to students
-    for student in masterStudentList:
-        listOfCourses=masterCourseList.copy()
-        #loop 4 times because we have 4 class to add
-        for i in range(4):       #never use the i
-
-            courseToAdd = listOfCourses.pop(random.randrange(0,len(listOfCourses)))
-            student.addCourse(courseToAdd)
-            
-        #watch out to not duplicate a course in the schedule
-          
-    
-        #print out each student and their courses
+def printStudents():
+    #print out each student and their courses          
     for student in masterStudentList:
         print(student)
 
 def loadCourse():
     #read csv file
-    #create course object
-    #save course object
-    pass #placeholder to tell python to keep moving
+    file1 = open("CourseCatalog.csv","r")
+    f = file1.readlines()
+    for line in f:
+        #print the line and strip everything to the right
+        id,name,description = line.rstrip().split(",")
+         #create course object
+        newCourse = Course(id,name)
+        #save course object
+        masterCourseList.append(newCourse)
+        
+def assignCourses():
+    #randomly add courses to students
+    for student in masterStudentList:
+        listOfCourses=masterCourseList.copy()
+        #loop 4 times because we have 4 class to add
+        for i in range(4):       #never use the i
+            courseToAdd = listOfCourses.pop(random.randrange(0,len(listOfCourses)))
+            student.addCourse(courseToAdd)
+                   
+def printOutSchedules():
+    #creates a new file for each student to print out for first day schedule
+    for student in masterStudentList:
+        fileToriteTo = open(f"{student.lastName}_{student.firstName}.txt","w")
+        fileToriteTo.write(student.__str__())
+        fileToriteTo.close()
 
-
+#run the functions
+loadStudent()
+loadCourse()
+assignCourses()
+printStudents()
+printOutSchedules()
 
 
 

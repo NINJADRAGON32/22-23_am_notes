@@ -1,0 +1,5 @@
+roo , billy
+	2 cs
+	4 math
+	1 gym
+	3  lunch
