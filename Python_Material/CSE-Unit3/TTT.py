@@ -1,5 +1,6 @@
 # the | sign is the pipe -> will see this again
 from tkinter import HORIZONTAL
+import random
 
 
 artBoard='''
@@ -41,12 +42,20 @@ def checkForWinner(board):
                printBoard(board)
                return True
      # HORIZONTAL
-     for c in range(len(board)):
+     for r in range(len(board)):
           if(board[r][0]==board[r][1] and board[r][1]==board[r][2]and board[r][0]!=" "):
                print("winner winner chicken dinner")
                printBoard(board)
                return True
      # diagonal
+     if (board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[2][2]!=" "):
+          print("winner winner chicken dinner")
+          printBoard(board)
+          return True
+     if (board[0][2]==board[1][1] and board[1][1]==board[2][0] and board[2][0]!=" "):
+          print("winner winner chicken dinner")
+          printBoard(board)
+          return True
 
 symbol="X" 
               
@@ -67,8 +76,20 @@ while (symbol!="Q"):
                     print("spot taken") 
                else:
                     goodSpot=True #breaks the players turn loopz
-
-
+                    #source: alex for the Syntax of the AI
+                    symbol = "O"
+     goodSpot=False
+     while not goodSpot:  
+          #we need to see if user inputs correct data -> null,no negs,strings
+          r=random.randint(1,3)
+          c=random.randint(1,3)
+          if r in range(3) and c in range(3):
+               #choose spot will set the symbol and if spot is taken, returns false 
+               if(not chooseSpot(r, c, symbol, gameBoard)):
+                    print("spot taken") 
+               else:
+                    goodSpot=True #breaks the players turn loopz
+     
 
                #check to see if the spot is taken
      #check for a winner -> if win set symbol to Q
@@ -79,4 +100,7 @@ while (symbol!="Q"):
           symbol="O"
      elif symbol=="O":
           symbol="X"
+
+
+          
 
