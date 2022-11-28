@@ -37,6 +37,10 @@
 # print(amountOwed)
 # print(change)
 
+###############################
+#did not see use modulo until I went to turn this in
+###############################
+
 amountOwed = (float(input("change owed(in cents): ")))
 q=0
 d=0

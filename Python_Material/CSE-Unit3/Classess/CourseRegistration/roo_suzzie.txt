@@ -1,5 +1,5 @@
 roo , suzzie
-	3  lunch
-	1 gym
-	2 cs
 	4 math
+	2 cs
+	1 gym
+	3  lunch
