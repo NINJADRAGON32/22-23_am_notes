@@ -47,7 +47,10 @@ def assignCourses():
             courseToAdd = listOfCourses.pop(random.randrange(0,len(listOfCourses)))
             student.addCourse(courseToAdd)
     for teacher in masterTeacherList:
-        listOfCourses=masterCourseList
+        listOfCourses=masterCourseList.copy()
+        for i in range(4):       #never use the i
+            courseToAdd = listOfCourses.pop(random.randrange(0,len(listOfCourses)))
+            teacher.addCourse(courseToAdd)
 
 def printOutSchedules():
     #creates a new file for each student to print out for first day schedule
@@ -61,24 +64,25 @@ def loadTeacher():
     f = file1.readlines()
     for line in f:
         #print the line and strip everything to the right
-        first,last = line.rstrip().split(",")
+        first,last,subject = line.rstrip().split(",")
         #create new student object
-        newStudent = Student(first,last)
+        newTeacher = Teacher(first,last,subject)
         #add student to masterStudentList
-        masterStudentList.append(newStudent)
+        masterTeacherList.append(newTeacher)
     
 def printTeacher():
     #print out each student and their courses          
     for teacher in masterTeacherList:
         print(teacher)
 #run the functions
+loadTeacher()
 loadStudent()
 loadCourse()
 assignCourses()
 printStudents()
-printOutSchedules()
-loadTeacher()
 printTeacher()
+printOutSchedules()
+
 
 
 

@@ -7,9 +7,8 @@ class Teacher:
         self.courses=[]
         
     def __str__(self):
-        out = f"{self.lastName} , {self.firstName}\n"
-        for c in self.courses:
-            out += f"\t{c}\n"
+        out = f"{self.lastName} - {self.subject}\n"
+        out += f"\tperiod 1 :{self.subject}\n \tperiod 2 :{self.subject}\n \tperiod 3 :{self.subject}\n"
         return out
     
     def getFirstName(self):

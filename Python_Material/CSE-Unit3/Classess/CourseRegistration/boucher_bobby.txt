@@ -1,5 +1,5 @@
 boucher , bobby
 	2 cs
+	4 math
 	3  lunch
 	1 gym
-	4 math
