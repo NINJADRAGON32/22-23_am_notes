@@ -8,7 +8,8 @@ totalOrder=("")
 #procedures for Order Loop
 
 '''
-    To order, state whether you would like a; Krabby Patty(kp), Coral Bits(cb) ,
+    To order, state whether you would like a; Krabby Patty(kp), Coral Bits(cb) ,Kelp Rings (Kr) , 
+    Footlong (fl) , Krabby Meal (km) , 
 '''
 
 
@@ -16,8 +17,8 @@ def sandwichFunc():
     global subtotal
     invalidInput=(0)
     while invalidInput==(0):
-        sandwich = input("Which sandwich would you like: Krabby Patty $5.25, Double Krabby Patty $6.25, Tripple Krabby Patty $5.75 (k,d,t): ")
-        if sandwich=="k":
+        sandwich = input("Which sandwich would you like: Krabby Patty  $1.25, Double Krabby Patty  $2.00, Tripple Krabby Patty $3.00 (s,d,t): ")
+        if sandwich=="s":
             cheese = input("would you like chees with that?(y/n)")
             if cheese == "n":
                 subtotal+=1.25
@@ -49,6 +50,29 @@ def sandwichFunc():
         elif cheese == "y":
                 subtotal+=3.25
                 order.append("Triple Krabby Patty w/ Cheese")
+                invalidInput=(invalidInput+1)
+        else: 
+            print("try again, Invalid Input")
+
+def sandwichMealFunc():
+    global subtotal
+    invalidInput=(0)
+    while invalidInput==(0):
+        sandwich = input("Which meal would you like: single $3.50, Double $3.75, Tripple $4.00 (k,d,t): (s,d,t) ")
+        if sandwich=="s":
+            subtotal+=3.50
+            order.append("Krabby Patty")
+            #iterator
+            invalidInput=(invalidInput+1)
+        elif sandwich=="b":
+            subtotal+=3.75
+            order.append("Double Krabby Patty")
+            #iterator
+            invalidInput=(invalidInput+1)
+        elif sandwich=="t":
+                subtotal+=4.00
+                order.append("Triple Krabby Patty")
+                #iterator
                 invalidInput=(invalidInput+1)
         else: 
             print("try again, Invalid Input")
@@ -87,40 +111,32 @@ def friesFunc():
     while invalidInput==(0):
         fries = input(" what size would you like (s,m,l): ")
         if fries== "m":
-            subtotal+= 1.50
-            order.append("Medium Fry")
+            subtotal+= 1.25
+            order.append("Medium CB")
             invalidInput=(invalidInput+1)
         elif fries == "l":
-            subtotal+=2.00
-            order.append("Large Fry")
+            subtotal+=1.50
+            order.append("Large CB")
             invalidInput=(invalidInput+1)
         elif fries == "s":
-            fries = input ("would you like to supersize your fries (y/n): ")
-            if fries== "y":
-                subtotal+=2.00
-                order.append("Large Fry")
-                fries="l"
-                invalidInput=(invalidInput+1)
-            else:
-                fries == "s"
-                subtotal += 1
-                order.append("Small Fry")
-                invalidInput=(invalidInput+1)
+            subtotal += 1
+            order.append("Small CB")
+            invalidInput=(invalidInput+1)
         else:
             print("try again, Invalid Input")
 
-def kpacketFunc():
-    global subtotal
-    price_of_kPacket=0
-    invalidInput=(0)
-    while invalidInput==(0):
-        kPacket = input ("how many would you like?: ")
-        kPacket = int(kPacket)
-        if kPacket >= 0:
-            order.append(f"{kPacket} Ketchup packets")
-            price_of_kPacket=kPacket*0.25
-            subtotal += price_of_kPacket
-            invalidInput=(invalidInput+1)
+# def kpacketFunc():
+#     global subtotal
+#     price_of_kPacket=0
+#     invalidInput=(0)
+#     while invalidInput==(0):
+#         kPacket = input ("how many would you like?: ")
+#         kPacket = int(kPacket)
+#         if kPacket >= 0:
+#             order.append(f"{kPacket} Ketchup packets")
+#             price_of_kPacket=kPacket*0.25
+#             subtotal += price_of_kPacket
+#             invalidInput=(invalidInput+1)
         
 
 #while loop to continue ordering
