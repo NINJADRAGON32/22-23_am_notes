@@ -125,6 +125,15 @@ def friesFunc():
         else:
             print("try again, Invalid Input")
 
+def footlong():
+    global subtotal
+    invalidInput=(0)
+    while invalidInput==(0):
+        confirm = input("the foot long is $2.00 would you like to add it to your final order (y,n)")
+        if confirm == "y":
+        
+        
+    
 # def kpacketFunc():
 #     global subtotal
 #     price_of_kPacket=0
