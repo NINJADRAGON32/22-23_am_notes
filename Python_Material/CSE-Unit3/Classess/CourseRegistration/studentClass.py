@@ -21,3 +21,5 @@ class Student:
     
     def addCourse(self,newCourse):
         self.courses.append(newCourse)
+        
+    

@@ -36,7 +36,6 @@ def snowMan():
      man.penup()
      
 
-
 def window():
      window = t.Turtle()
      window.color('white')
