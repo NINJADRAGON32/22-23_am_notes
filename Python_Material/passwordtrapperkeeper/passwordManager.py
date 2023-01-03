@@ -3,7 +3,8 @@ from Username import Username
 from Password import Password
 import Password
 import Username
-userName = Username.userName
+
+userName = Username.Username
 passWord = Password.passWord
 account = input ("do you already have an account(y/n): ")
 if account == 'n':
@@ -23,7 +24,7 @@ pas = input("Password: ")
 
 #temporary###################
 ui = Ui(user, pas)
-accountUsername = Username(userName)
+accountUsername = Username(Username)
 accountPassword = Password(passWord)
 print(ui.pas)
 print(accountPassword.passWord)
