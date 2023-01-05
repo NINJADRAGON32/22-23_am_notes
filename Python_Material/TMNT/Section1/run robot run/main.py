@@ -57,11 +57,9 @@ robot.showturtle()
 turdXChor=robot.xcor()
 turdYChor=robot.ycor()
 turdCor=robot.pos()
+
 #---- TODO: change maze here
 wn.bgpic("maze1.png") # other file names should be maze2.png, maze3.png
-
-# while True:
-  
 
 #---- TODO: begin robot movement here
 trtl.onkey(moveUp, "w")
@@ -96,10 +94,41 @@ def maze3():
     moveUp()
     moveRight()
 
+#---- forever runing the mazes
+def mazeRunner():
+  while True:
+    maze1()
+    maze2()
+    maze3()
+
 #---- calling functions
 trtl.onkey(maze1, "b")
 trtl.onkey(maze2, "n")
 trtl.onkey(maze3, "m")
+trtl.onkey(mazeRunner, ",")
+
+#---- custom maze
+def CustomMaze():
+  wn.bgpic("pixil-frame-0.png")
+  robot.goto(-50,-100)
+  moveLeft()
+  for i in range(2):
+    moveUp()
+  for i in range (2):
+    moveRight()
+  moveUp()
+  for i in range (2):
+    moveRight()
+  for i in range (2):
+    moveDown()
+  moveLeft()
+  moveDown()
+def customMap():
+    wn.bgpic("pixil-frame-0.png")
+
+trtl.onkey(customMap, "C")
+trtl.onkey(CustomMaze, "c")
+
 #---- end robot movement 
 wn.listen()
 wn.mainloop()
