@@ -1,0 +1,6 @@
+jo,300
+jose,100
+baba,25
+john,15
+chad,8
+billy,8
