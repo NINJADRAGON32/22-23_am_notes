@@ -103,9 +103,9 @@ def draw_leaderboard(high_scorer, leader_names, leader_scores, turtle_object, pl
   gold=leader_scores[0]
   silver=leader_scores[1]
   bronze=leader_scores[2]
-  if(player_score>=gold):
+  if int(player_score)>=int(gold):
       turtle_object.write("you earned  gold medal!",font=("Comic Sans",10,"bold"))
-  elif(player_score>=silver):
+  elif int(player_score)>=int(silver):
     turtle_object("you earned a silver medal!",font=("Comic Sans",10,"bold"))
-  elif(player_score>=bronze):
+  elif int(player_score)>=int(bronze):
     turtle_object("you earned a bronze medal!",font=("Comic Sans",10,"bold"))

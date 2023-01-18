@@ -2,14 +2,14 @@
 import turtle as t
 import random as r
 import leaderboard as lb 
-
 #---- Global Variables
 wn=t.Screen()     
-timer=25
 fontSetup=("Comic Sans",30,"normal")
 interval=1000
 score=0
 FILENAME="Database.txt"
+timer=25
+begin=0
 
 #---- initialize turtles
 bob = t.Turtle()
@@ -89,12 +89,13 @@ def manageLeaderBoard():
         print("did not make leaderboard")
     #display leaderBoard
     lb.draw_leaderboard(False, namesList, scoresList, scoreKeeper, 10)
-    
+
 #---- events
 bob.onclick(bobClicked)
 wn.ontimer(updatetimer,interval)
 
 #---- main loop
+
 wn.mainloop()
 
 
