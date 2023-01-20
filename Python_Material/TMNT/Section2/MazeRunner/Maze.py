@@ -11,6 +11,7 @@ wallLength=15
 numberOfWalls=25
 pathWidth=15
 barrier=15
+wallsMade=0
 
 #---- initialize turtles
 mazeDrawer = t.Turtle()
@@ -23,6 +24,11 @@ mazeRunner.color("red")
 mazeRunner.pu()
 mazeRunner.goto(-pathWidth*2,pathWidth*2)
 mazeRunner.pendown()
+
+follow = t.Turtle()
+follow.color("grey")
+follow.speed(1)
+
 #---- functions
 def drawDoor(pos):
     mazeDrawer.fd(pos)
@@ -60,6 +66,16 @@ def drawMaze():
                 drawBarrier(barrierSpot)
                 drawDoor(doorSpot-barrierSpot)
                 mazeDrawer.fd(wallLength-doorSpot-pathWidth*2)
+        # elif w>=(numberOfWalls-1):
+        #     mazeDrawer.left(90)
+        #     doorSpot=r.randint(pathWidth*2,(wallLength-2*pathWidth))
+        #     drawDoor(doorSpot)
+        #     drawBarrier(barrierSpot-doorSpot-pathWidth*2)
+        #     mazeDrawer.fd(wallLength-barrierSpot)
+    for i in range(4):
+        wallLength+=pathWidth
+        mazeDrawer.left(90)
+        mazeDrawer.fd(wallLength)
     mazeDrawer.hideturtle()
 
 def moveUp():
@@ -75,7 +91,7 @@ def moveRight():
   mazeRunner.setheading(0)
 
 def go():
-    mazeRunner.fd(1)
+    mazeRunner.fd(2)
     
     canvas = wn.getcanvas()
     x,y=mazeRunner.pos()
@@ -88,7 +104,13 @@ def go():
             mazeRunner.color("gray")
             wn.onkeypress(None,"Return")
             return                      #shortcut to stop the function
-    wn.ontimer(go,15)
+    wn.ontimer(go,50)
+    wn.ontimer(followRunner,50)
+    
+def followRunner():
+    follow.setheading(follow.towards(mazeRunner))
+    follow.forward(1)
+    
 #---- events
 wn.onkeypress(moveUp, "w")
 wn.onkeypress(moveDown, "s")
