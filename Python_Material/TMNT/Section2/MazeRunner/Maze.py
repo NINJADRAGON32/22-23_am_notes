@@ -12,7 +12,10 @@ numberOfWalls=25
 pathWidth=15
 barrier=15
 wallsMade=0
-
+timer=0
+fontSetup=("Comic Sans",30,"normal")
+interval=1000
+p=False
 #---- initialize turtles
 mazeDrawer = t.Turtle()
 mazeDrawer.pensize(5)
@@ -23,11 +26,18 @@ mazeRunner = t.Turtle()
 mazeRunner.color("red")
 mazeRunner.pu()
 mazeRunner.goto(-pathWidth*2,pathWidth*2)
-mazeRunner.pendown()
+
+timeKeeper=t.Turtle()
+timeKeeper.penup()
+timeKeeper.hideturtle()
+timeKeeper.goto(-100,300)
+timeKeeper.pd()
+timeKeeper.speed(0)
 
 follow = t.Turtle()
-follow.color("grey")
-follow.speed(1)
+follow.color("blue")
+follow.speed(0.99)
+follow.pu()
 
 #---- functions
 def drawDoor(pos):
@@ -92,34 +102,53 @@ def moveRight():
 
 def go():
     mazeRunner.fd(2)
-    
     canvas = wn.getcanvas()
     x,y=mazeRunner.pos()
-    margin=1
+    margin=2
     items = canvas.find_overlapping(x+margin, -y+margin, x-margin, -y+margin)
     #if the items variable has overlap
     if(len(items)>0): #stack of what is overlapping
         canvasColor= canvas.itemcget(items[0], "fill")
         if canvasColor=="blue":
-            mazeRunner.color("gray")
-            wn.onkeypress(None,"Return")
-            return                      #shortcut to stop the function
+            resetGame()
+                                  #shortcut to stop the function
     wn.ontimer(go,50)
     wn.ontimer(followRunner,50)
-    
+   
+# def pause():
+#     p=True
+#     while p==True:
+#         wn.onkeypress(resume, "m") 
+#         pass
+
+# def resume():
+#     p=False
+            
 def followRunner():
     follow.setheading(follow.towards(mazeRunner))
-    follow.forward(1)
+    follow.forward(1) 
+
+def resetGame():
+    mazeRunner.color("red")
+    mazeRunner.pu()
+    mazeRunner.goto(-pathWidth*2,pathWidth*2)
+
+def updatetimer():
+    global timer
+    timeKeeper.clear()
+    timer+=1
+    timeKeeper.write(f"Timer: {timer}",font=fontSetup)
+    timeKeeper.getscreen().ontimer(updatetimer,interval)
     
 #---- events
 wn.onkeypress(moveUp, "w")
 wn.onkeypress(moveDown, "s")
 wn.onkeypress(moveLeft, "a")
 wn.onkeypress(moveRight, "d")
-wn.onkeypress(go, "Return") #enter nd return are different
-
-
-    
+wn.onkeypress(resetGame, "r")
+wn.onkeypress(go, "Return") #enter and return are different
+wn.ontimer(updatetimer,1000)
+# wn.onkeypress(pause, "p")
 
 #---- main loop
 
