@@ -2,7 +2,9 @@
 import turtle as t
 import time
 import random as random
+import winsound
 #---- game config
+speed=1.0
 fontSetup=("Comic Sans",15,"normal")
 delay=0.1
 wn=t.Screen()
@@ -15,13 +17,13 @@ draw.pu()
 draw.pensize(5)
 
 p1 = t.Turtle(shape="square")
-p1.speed(0)
+p1.speed(speed)
 p1.pu()
 p1.direction="stop"
 
 p2 = t.Turtle(shape="square")
 p2.color("green")
-p2.speed(0)
+p2.speed(speed)
 p2.pu()
 p2.direction="stop"
 p2.hideturtle()
@@ -92,6 +94,7 @@ def move2():
         
 def p1hideTheBodyParts():
     global bodyParts
+    winsound.Beep(500,1000)
     p1.goto(0,0)
     p1.direction = "stop"
     for  eachPart in bodyParts:
@@ -100,6 +103,7 @@ def p1hideTheBodyParts():
     
 def p2hideTheBodyParts():
     global p2bodyParts
+    winsound.Beep(500,1000)
     p2.goto(0,0)
     p2.direction = "stop"
     for  eachPart in p2bodyParts:
@@ -107,6 +111,7 @@ def p2hideTheBodyParts():
     p2bodyParts=[]
 
 def PVP():
+    global speed
     p2.showturtle()
     while True:
         wn.update()
@@ -115,6 +120,8 @@ def PVP():
             p1hideTheBodyParts()
         # TODO: collide with food
         if p1.distance(food) < 20:
+            #speed increases
+            speed-=0.2
             #food moves
             food.goto(random.randint(-280,280),random.randint(-280,280))
             #grow a body part
@@ -143,6 +150,8 @@ def PVP():
         if p2.xcor() > 290 or p2.xcor() <-290 or p2.ycor()>290 or p2.ycor()<-290:
             p2hideTheBodyParts()
         if p2.distance(food) < 20:
+            #speed increases
+            speed-=0.2
             #food moves
             food.goto(random.randint(-280,280),random.randint(-280,280))
             #grow a body part
@@ -169,6 +178,7 @@ def PVP():
         time.sleep(delay)
 
 def normal():
+    global speed
     while True:
         wn.update()
         
@@ -178,6 +188,8 @@ def normal():
                 
         # TODO: collide with food
         if p1.distance(food) < 20:
+            #speed increases
+            speed-=0.2
             #food moves
             food.goto(random.randint(-280,280),random.randint(-280,280)) 
             #grow a body part
@@ -224,4 +236,10 @@ wn.listen()
 border()
 draw.goto (-300,310)
 draw.write(" To play PVP press (p) to play Normal snake press(n)", font=fontSetup)
+draw.goto(-50,-320)
+draw.write(" controls:",font=fontSetup)
+draw.goto(-200,-340)
+draw.write("player 1: W,A,S,D          player 2: use arrows",font=fontSetup)
+
+
 wn.mainloop()
