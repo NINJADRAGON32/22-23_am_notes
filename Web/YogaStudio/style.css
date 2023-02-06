@@ -1,0 +1,53 @@
+/* single and block line comment*/
+
+body{
+    background-color: #f5f5f5;
+    color:#40407A;
+    font-family: Verdana,Arial, Sans-serif;
+}
+
+header{
+    background-color: #80cbc4;
+    text-align: center;
+
+}
+
+h1{
+    line-height: 200%;
+}
+
+h2{
+    font-size: 200%;
+}
+
+nav{
+    text-align: center;
+    font-weight: bold;
+
+}
+
+nav a{
+    text-decoration: none;
+}
+
+footer{
+    background-color: #80cbc4;
+    font-size: .60em;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+/* class */
+.studio{
+    color:#40407A;
+    font-style: italic;
+
+}
+
+/* id styling */
+#wrapper{
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+}
