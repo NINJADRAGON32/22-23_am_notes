@@ -1,10 +1,15 @@
-rows=input("how many rows are there:") 
-columns=imput("how many columns are there: ")
-while solved=False:
-    for row in range (rows):
-        for col in range (columns):
-            if ({col}{row})== R:
-                if ({col}+1)({row}) == E or ({})
-            else:
-                pass
-    
+def wordInALine(line, word):
+    if word in line:
+        print(line.index(word))
+        return True
+
+rowImIn="asdfbaconghjkl"
+wordImSearchingFor = 'bacon'
+
+wordInALine(rowImIn, wordImSearchingFor)
+
+# horizontl searching
+puzzleList=[[]]
+def printFile(fileName):
+    global puzzleList,wordImSearchingFor,puzzle
+    file=open
