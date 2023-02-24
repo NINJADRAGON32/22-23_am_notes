@@ -7,7 +7,7 @@ WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 --virtual window size:  Your coordinates will be based on this system
 VIRTUAL_WIDTH = 432
-VIRTUAL_HEIGHT = 243
+VIRTUAL_HEIGHT = 432
 
 PADDLE_SPEED = 200
 
@@ -50,16 +50,16 @@ function love.load()
      })
 
      -- setup score
-     player1Score=0
-     player2Score=0
-     player3Score=0
-     player4Score=0
+     player1Score=7
+     player2Score=7
+     player3Score=7
+     player4Score=7
 
      --create a paddle
      player1= Paddle(10,30,5,20)
      player2= Paddle(VIRTUAL_WIDTH-10,VIRTUAL_HEIGHT-30,5,20)
-     player3= Paddle(10,30,5,20)
-     player4= Paddle(VIRTUAL_WIDTH-10,VIRTUAL_HEIGHT-30,5,20)
+     player3= Paddle(150,20,20,5)
+     player4= Paddle(VIRTUAL_WIDTH-10,VIRTUAL_HEIGHT-30,20,5)
 
      --create a ball
      ball=Ball(VIRTUAL_WIDTH/2-2,VIRTUAL_HEIGHT/2-2,4,4)
@@ -90,20 +90,20 @@ function love.update(dt)
           player2.dy=0
      end
      --player 3 or top movement
-     if love.keyboard.isDown('[') then
-          player3.dy=-PADDLE_SPEED
-     elseif love.keyboard.isDown(']') then
-          player3.dy = PADDLE_SPEED
+     if love.keyboard.isDown('a') then
+          player3.dx=-PADDLE_SPEED
+     elseif love.keyboard.isDown('d') then
+          player3.dx=PADDLE_SPEED
      else
-          player3.dy=0
+          player3.dx=0
      end
      --player 4 or bottom movement
-     if love.keyboard.isDown('v') then
-          player4.dy=-PADDLE_SPEED
-     elseif love.keyboard.isDown('b') then
-          player4.dy = PADDLE_SPEED
+     if love.keyboard.isDown('left') then
+          player4.dx=-PADDLE_SPEED
+     elseif love.keyboard.isDown('right') then
+          player4.dx = PADDLE_SPEED
      else
-          player4.dy=0
+          player4.dx=0
      end
 
 
@@ -139,64 +139,87 @@ function love.update(dt)
                sounds['paddle_hit']:play()
           end
           if ball:collides(player3) then
-               ball.dx = -ball.dx * 1.03
-               ball.x = player3.x-5
+               ball.dy = -ball.dy * 1.03
+               ball.y = player3.y+5
 
-               if ball.dy<0 then 
-                    ball.dy= -math.random(10,150)
+               if ball.dx<0 then 
+                    ball.dx= -math.random(10,150)
                else
-                    ball.dy= math.random(10,150)
+                    ball.dx= math.random(10,150)
                end
                sounds['paddle_hit']:play()
           end
           if ball:collides(player4) then
-               ball.dx = -ball.dx * 1.03
-               ball.x = player4.x-5
+               ball.dy = -ball.dy * 1.03
+               ball.y = player4.y-5
 
-               if ball.dy<0 then 
-                    ball.dy= -math.random(10,150)
+               if ball.dx<0 then 
+                    ball.dx= -math.random(10,150)
                else
-                    ball.dy= math.random(10,150)
+                    ball.dx= math.random(10,150)
                end
                sounds['paddle_hit']:play()
           end
-          if ball.y<=0 then
-               ball.y=0
-               ball.dy= -ball.dy
-               sounds['wall_hit']:play()
-          end
-          if ball.y>= VIRTUAL_HEIGHT-4 then
-               ball.y = VIRTUAL_HEIGHT-4
-               ball.dy = -ball.dy
-               sounds['wall_hit']:play()
-          end
+          -- if ball.y<=0 then
+          --      ball.y=0
+          --      ball.dy= -ball.dy
+          --      sounds['wall_hit']:play()
+          -- end
+          -- if ball.y>= VIRTUAL_HEIGHT-4 then
+          --      ball.y = VIRTUAL_HEIGHT-4
+          --      ball.dy = -ball.dy
+          --      sounds['wall_hit']:play()
+          -- end
 
           ball:update(dt)
      end
 
 
-
      if ball.x < 0 then
-          player2Score = player2Score + 1
+          player1Score = player1Score - 1
           servingPlayer = 2
-          if player2Score ==3 then
-               winningPlayer=2
-               gameState='done' 
-          else
-
-               gameState = 'serve'
-          end
-          ball:reset()
-          sounds['score']:play()
-     end
-
-     if ball.x > VIRTUAL_WIDTH then
-          player1Score = player1Score + 1
-          servingPlayer = 1
-          if player1Score ==3 then
+          if player1Score ==0 then
                winningPlayer=1
                gameState='done' 
           else
+
+               gameState = 'serve'
+          end
+          ball:reset()
+          sounds['score']:play()
+     end
+     if ball.y < 0 then
+          player3Score = player3Score - 1
+          servingPlayer = 2
+          if player3Score ==0 then
+               winningPlayer=3
+               gameState='done' 
+          else
+
+               gameState = 'serve'
+          end
+          ball:reset()
+          sounds['score']:play()
+     end
+     if ball.x > VIRTUAL_WIDTH then
+          player2Score = player2Score - 1
+          servingPlayer = 1
+          if player2Score ==0 then
+               winningPlayer=2
+               gameState='done' 
+          else
+               gameState = 'serve'
+          end
+          ball:reset()
+          sounds['score']:play()
+     end
+     if ball.y > VIRTUAL_HEIGHT then
+          player4Score = player4Score - 1
+          servingPlayer = 1
+          if player4Score ==0 then
+               winningPlayer=4
+               gameState='done' 
+          else
                gameState = 'serve'
           end
           ball:reset()
@@ -206,10 +229,10 @@ function love.update(dt)
 
 
 
-     player1:update(dt)
-     player2:update(dt) 
-     player3:update(dt)
-     player4:update(dt) 
+     player1:update(dt,1)
+     player2:update(dt,2) 
+     player3:update(dt,3)
+     player4:update(dt,4) 
 end
 
 function love.keypressed(key)
@@ -225,8 +248,6 @@ function love.keypressed(key)
                gameState = 'serve'
                player1Score = 0
                player2Score = 0
-               player3Score = 0
-               player4Score = 0
                ball:reset()
                if winningPlayer ==1 then
                     servingPlayer = 2
@@ -267,8 +288,8 @@ function love.draw()
      love.graphics.setFont(scoreFont)
      love.graphics.print(tostring(player1Score), VIRTUAL_WIDTH / 2 - 50, VIRTUAL_HEIGHT / 3)
      love.graphics.print(tostring(player2Score), VIRTUAL_WIDTH / 2 + 30, VIRTUAL_HEIGHT / 3)
-     love.graphics.print(tostring(player3Score), VIRTUAL_WIDTH / 2 - 50, VIRTUAL_HEIGHT / 3)
-     love.graphics.print(tostring(player4Score), VIRTUAL_WIDTH / 2 + 30, VIRTUAL_HEIGHT / 3)
+     love.graphics.print(tostring(player3Score), VIRTUAL_WIDTH / 2 - 50, VIRTUAL_HEIGHT / 4+100)
+     love.graphics.print(tostring(player4Score), VIRTUAL_WIDTH / 2 + 30, VIRTUAL_HEIGHT / 4+100)
 
      --love.graphics.rectangle('fill option',x,y,w,h)   --w and h can stretch the paddle....
      --left side paddle
